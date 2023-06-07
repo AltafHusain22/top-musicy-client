@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useContext } from "react";
@@ -5,11 +6,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { FiShoppingCart } from 'react-icons/fi';
-import logo from '../../../../public/Assets/logo/logo.png'
+import { FiShoppingCart } from "react-icons/fi";
+import logo from "../../../../public/Assets/logo/logo.png";
+// app bar
+
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -32,16 +35,21 @@ const Header = () => {
         <Link to={"/classes"}>Classes</Link>
       </li>
 
-      <li>
+    </>
+  );
+  const userMenu = (
+    <>
+      <li className="text-black">
         <Link to={"/dashboard"}>Dashboard</Link>
       </li>
-     
-    
+      <li className="text-black">
+        <Link onClick={handleLogOut}>LogOUt</Link>
+      </li>
     </>
   );
   return (
     <nav className=" ">
-      <div className="navbar px-10 md:py-5 fixed z-10 bg-opacity-0 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
+      <div className="navbar px-10 md:py-5 z-10 bg-opacity-1 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
         <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -68,7 +76,8 @@ const Header = () => {
             </ul>
           </div>
           <a className=" text-2xl font-bold flex items-center justify-center">
-            <span className="mb-2">Top</span><img className="w-[100px]" src={logo} alt="" />
+            <span className="mb-2">Top</span>
+            <img className="w-[100px]" src={logo} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -77,14 +86,21 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <>
-              <p>{user.displayName}</p>
-
-              <button
-                onClick={handleLogOut}
-                className="btn btn-outline text-white mr-5"
-              >
-                LogOut
-              </button>
+              {/* avatar */}
+              <div className="dropdown dropdown-end mr-5">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar ring ring-danger ring-offset-base-100 ring-offset-2">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  {userMenu}
+                </ul>
+              </div>
+             
             </>
           ) : (
             <Link to={"/login"}>

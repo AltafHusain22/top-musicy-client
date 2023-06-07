@@ -5,17 +5,11 @@ import Header from "../components/shared/Header/Header";
 import Footer from "../components/shared/Footer/Footer";
 
 const Main = () => {
-  const location = useLocation()
-  const noHeaderFooter = location.pathname.includes('register') || location.pathname.includes('login')
   return (
     <div>
-      { noHeaderFooter ||
-        <Header></Header>
-      }
-       <Outlet></Outlet>
-      {
-      noHeaderFooter || <Footer></Footer>
-      }
+      <Header></Header>
+      <Outlet></Outlet>
+      <Footer></Footer>
     </div>
   );
 };
