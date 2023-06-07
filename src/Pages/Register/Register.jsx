@@ -19,17 +19,17 @@ import img from "../../../public/Assets/Login&Registration/1.jpg";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password).then((result) => {
+    createUser(data.email, data.password).
+      then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
-
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
+          console.log(data.name)
           const saveUser = { name: data.name, email: data.email };
           fetch("http://localhost:5000/users", {
             method: "POST",
@@ -58,187 +58,181 @@ const Register = () => {
   };
 
   return (
-    <section className="bg-white  mt-20">
-      <ToastContainer />
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
-          <div className="absolute inset-0">
-            <img
-              className="object-cover object-top w-full h-full rounded-xl"
-              src={img}
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+    <section className="bg-white mt-20">
+    <ToastContainer />
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
+        <div className="absolute inset-0">
+          <img
+            className="object-cover object-top w-full h-full rounded-xl"
+            src={img}
+            alt="Background"
+          />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+      </div>
 
-        <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
-          <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-            {/* {error} */}
-            {/* <ToastContainer /> */}
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
-              Sign UP to Celebration
-            </h2>
-            <p className="mt-2 text-base text-gray-600">
-              Already have an account?
-              <Link
-                to={"/login"}
-                className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
-              >
-                Login
-              </Link>
-            </p>
+      <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+        <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
+          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
+            Sign Up for Celebration
+          </h2>
+          <p className="mt-2 text-base text-gray-600">
+            Already have an account?{" "}
+            <Link
+              to={"/login"}
+              className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+            >
+              Login
+            </Link>
+          </p>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
-              <div className="space-y-5">
-                {/* name field */}
-                <div>
-                  <label className="text-base font-medium text-gray-900">
-                    First & Last Name
-                  </label>
-                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                    <div className="email-field-wrap">
-                      <AiOutlineUserAdd></AiOutlineUserAdd>
-                    </div>
-                    <input
-                      {...register("firstName", { required: true })}
-                      aria-invalid={errors.firstName ? "true" : "false"}
-                      placeholder="Enter Your name "
-                      className="name-input-field"
-                    />
-                    {errors.firstName?.type === "required" && (
-                      <p className="text-red-600 mt-3" role="alert">
-                        {" "}
-                        Name is required Must Not be Empty !
-                      </p>
-                    )}
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+            <div className="space-y-5">
+              {/* name field */}
+              <div>
+                <label className="text-base font-medium text-gray-900">
+                  First & Last Name
+                </label>
+                <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                  <div className="email-field-wrap">
+                    <AiOutlineUserAdd />
                   </div>
-                </div>
-                {/* email field */}
-                <div>
-                  <label className="text-base font-medium text-gray-900">
-                    Email address
-                  </label>
-                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                    <div className="email-field-wrap">
-                      <MdAlternateEmail></MdAlternateEmail>
-                    </div>
-                    <input
-                      {...register("email", { required: true })}
-                      aria-invalid={errors.email ? "true" : "false"}
-                      placeholder="Enter email to get started"
-                      className="email-input-field"
-                    />
-                    {errors.email?.type === "required" && (
-                      <p className="text-red-600 mt-3" role="alert">
-                        {" "}
-                        Email Address is required Must Not be Empty !
-                      </p>
-                    )}
-                  </div>
-                </div>
-                {/* Photo url */}
-                <div>
-                  <label className="text-base font-medium text-gray-900">
-                    Photo URL
-                  </label>
-                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                    <div className="photo-field-wrap">
-                      <BiPhotoAlbum></BiPhotoAlbum>
-                    </div>
-                    <input
-                      {...register("photo")}
-                      placeholder="Enter photo Url"
-                      className="email-input-field"
-                    />
-                  </div>
-                </div>
-                {/* password */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label className="text-base font-medium text-gray-900">
-                      Password
-                    </label>
-
-                    <Link to={"#"} className="forgot-link">
-                      Forgot password?
-                    </Link>
-                  </div>
-                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                    <div className="pass-field-wrap">
-                      <BiFingerprint></BiFingerprint>
-                    </div>
-
-                    <input
-                      placeholder="Enter your password"
-                      className="pass-input-field"
-                      type="password"
-                      {...register("password", {
-                        required: true,
-                        minLength: 6,
-                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
-                      })}
-                    />
-                    {errors.password?.type === "required" && (
-                      <p className="text-red-600">Password is required</p>
-                    )}
-                    {errors.password?.type === "minLength" && (
-                      <p className="text-red-600">
-                        Password must be 6 characters
-                      </p>
-                    )}
-                    {errors.password?.type === "pattern" && (
-                      <p className="text-red-600">
-                        Password must have one Capital letter
-                      </p>
-                    )}
-                  </div>
-                </div>
-                {/* Confirm password */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label className="text-base font-medium text-gray-900">
-                      Confirm Password
-                    </label>
-                  </div>
-                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                    <div className="pass-field-wrap">
-                      <BiFingerprint></BiFingerprint>
-                    </div>
-
-                    <input
-                      placeholder="Enter your password"
-                      className="pass-input-field"
-                      type="password"
-                      {...register("confirm", {
-                        required: true,
-                        validate: (value) => value === watch("password"), // Add a validation function to check if it matches the password
-                      })}
-                    />
-                    {errors.confirm?.type === "required" && (
-                      <p className="text-red-600">Password is required</p>
-                    )}
-                    {errors.confirm?.type === "validate" && (
-                      <p className="text-red-600">Password does not match</p> // Show an error message if the confirm password does not match
-                    )}
-                  </div>
-                </div>
-
-                <div>
                   <input
-                    type="submit"
-                    className="btn btn-primary w-full text-white"
-                    value="Sign Up"
+                    {...register("name", { required: true })}
+                    aria-invalid={errors.name ? "true" : "false"}
+                    placeholder="Enter Your Name"
+                    className="name-input-field"
+                  />
+                  {errors.name?.type === "required" && (
+                    <p className="text-red-600 mt-3" role="alert">
+                      Name is required! Must not be empty.
+                    </p>
+                  )}
+                </div>
+              </div>
+              {/* email field */}
+              <div>
+                <label className="text-base font-medium text-gray-900">
+                  Email Address
+                </label>
+                <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                  <div className="email-field-wrap">
+                    <MdAlternateEmail />
+                  </div>
+                  <input
+                    {...register("email", { required: true })}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    placeholder="Enter email to get started"
+                    className="email-input-field"
+                  />
+                  {errors.email?.type === "required" && (
+                    <p className="text-red-600 mt-3" role="alert">
+                      Email Address is required! Must not be empty.
+                    </p>
+                  )}
+                </div>
+              </div>
+              {/* Photo url */}
+              <div>
+                <label className="text-base font-medium text-gray-900">
+                  Photo URL
+                </label>
+                <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                  <div className="photo-field-wrap">
+                    <BiPhotoAlbum />
+                  </div>
+                  <input
+                    {...register("photo")}
+                    placeholder="Enter photo URL"
+                    className="email-input-field"
                   />
                 </div>
               </div>
-            </form>
+              {/* password */}
+              <div>
+                <div className="flex items-center justify-between">
+                  <label className="text-base font-medium text-gray-900">
+                    Password
+                  </label>
+                  <Link to={"#"} className="forgot-link">
+                    Forgot password?
+                  </Link>
+                </div>
+                <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                  <div className="pass-field-wrap">
+                    <BiFingerprint />
+                  </div>
+                  <input
+                    placeholder="Enter your password"
+                    className="pass-input-field"
+                    type="password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
+                    })}
+                  />
+                  {errors.password?.type === "required" && (
+                    <p className="text-red-600">Password is required</p>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-600">
+                      Password must be at least 6 characters
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-600">
+                      Password must contain at least one capital letter and one special character
+                    </p>
+                  )}
+                </div>
+              </div>
+              {/* Confirm password */}
+              <div>
+                <div className="flex items-center justify-between">
+                  <label className="text-base font-medium text-gray-900">
+                    Confirm Password
+                  </label>
+                </div>
+                <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                  <div className="pass-field-wrap">
+                    <BiFingerprint />
+                  </div>
+                  <input
+                    placeholder="Confirm your password"
+                    className="pass-input-field"
+                    type="password"
+                    {...register("confirm", {
+                      required: true,
+                      validate: (value) => value === watch("password")
+                    })}
+                  />
+                  {errors.confirm?.type === "required" && (
+                    <p className="text-red-600">Confirm password is required</p>
+                  )}
+                  {errors.confirm?.type === "validate" && (
+                    <p className="text-red-600">Password does not match</p>
+                  )}
+                </div>
+              </div>
 
-            {/* social login */}
-            <SocialLogin></SocialLogin>
-          </div>
+              <div>
+                <input
+                  type="submit"
+                  className="btn btn-primary w-full text-white"
+                  value="Sign Up"
+                />
+              </div>
+            </div>
+          </form>
+
+          {/* social login */}
+          <SocialLogin />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 
