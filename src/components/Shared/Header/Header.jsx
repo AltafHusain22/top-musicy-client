@@ -6,7 +6,7 @@ import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { FiShoppingCart } from 'react-icons/fi';
-
+import logo from '../../../../public/Assets/logo/logo.png'
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   
@@ -25,11 +25,11 @@ const Header = () => {
       </li>
 
       <li>
-        <Link to={"/menu"}>Menu</Link>
+        <Link to={"/instructors"}>Instructors</Link>
       </li>
 
       <li>
-        <Link to={"/order"}>Order</Link>
+        <Link to={"/classes"}>Classes</Link>
       </li>
 
       <li>
@@ -41,7 +41,7 @@ const Header = () => {
   );
   return (
     <nav className=" ">
-      <div className="navbar px-10 md:py-5 fixed z-10 bg-opacity-30 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
+      <div className="navbar px-10 md:py-5 fixed z-10 bg-opacity-0 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
         <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -67,8 +67,8 @@ const Header = () => {
               {menuItems}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-2xl font-bold">
-            Bistro Boss
+          <a className=" text-2xl font-bold flex items-center justify-center">
+            <span className="mb-2">Top</span><img className="w-[100px]" src={logo} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -91,10 +91,6 @@ const Header = () => {
               <button className="btn btn-outline text-white mr-5">Login</button>
             </Link>
           )}
-           
-    
-    
-          <a className="btn">Get started</a>
         </div>
       </div>
     </nav>
