@@ -1,0 +1,36 @@
+
+
+.email-field-wrap{
+	@apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none
+}
+.email-input-field , .name-input-field {
+	@apply block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600
+}
+.forgot-link{
+	@apply text-sm font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline
+}
+
+.pass-field-wrap, .photo-field-wrap{
+	@apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none
+}
+.pass-input-field{
+	@apply block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600
+}
+
+.captcha-wrap {
+	@apply mt-2.5 relative text-gray-400 focus-within:text-gray-600
+}
+.captcha-input-field{
+	@apply block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600
+}
+.login-btn {
+	@apply bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none text-white
+}
+
+.sign-with-google-btn{
+	@apply relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none
+}
+
+.sign-with-fb-btn {
+	@apply relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none
+}
