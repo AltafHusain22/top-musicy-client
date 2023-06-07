@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
-import { BsCheck } from "react-icons/bs";
 import { BiPhotoAlbum } from "react-icons/bi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { useContext } from "react";
@@ -16,77 +15,47 @@ import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SocialLogin from "../../components/shared/SocialLogin/SocialLogin";
+import img from "../../../public/Assets/Login&Registration/1.jpg";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const { createUser ,updateUserProfile } = useContext(AuthContext);
-  const navigate = useNavigate()
-  // handle user register
-  const handleRegister = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const photo = form.photo.value 
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    // form validation
+  const onSubmit = (data) => {
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
 
-    if (name === "" || email === "" || password === "") {
-      toast("Field Must Not Be Empty!");
-      return;
-    } else if (password.length < 6) {
-      toast("Password Mustbe 6 char!");
-      return;
-    }
-    
-    // else if (/^(?=.*\d)$/.test(password)) {
-    //   toast("password should contain at least 1 digit!");
-    //   return;
-    // } else if (/^(?=(.*\W){1})$/.test(password)) {
-    //   toast("should contain at least 1 special characters ! ");
-    //   return;
-    // } else if (/^(?=.*[a-zA-Z])$/.test(password)) {
-    //   toast("should contain at least 1 alphabetic character! ");
-    //   return;
-    // } else if (/^ (?!.*\s) $/.test(password)) {
-    //   toast("should not contain any blank space! ");
-    //   return;
-    // } 
-    
-    else {
-      createUser(email, password)
-      .then((userCredential) => {
-          const user = userCredential.user;
-          
-          updateUserProfile(name, photo)
-          .then(()=>{
-            const  userInfo = { name : name , email : email }
-            fetch('http://localhost:5000/users',{
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(userInfo)
-            })
-
-            .then(res => res.json())
-            .then(data=> {
-              console.log(data)
-            if(data.insertedId ){
-              Swal.fire("Good job!", "User Created Successfully!", "success");
-              form.reset();
-              navigate('/')
-                }
-            })
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
           })
-         })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
-    }
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+        })
+        .catch((error) => console.log(error));
+    });
   };
-  
 
   return (
     <section className="bg-white  mt-20">
@@ -96,53 +65,10 @@ const Register = () => {
           <div className="absolute inset-0">
             <img
               className="object-cover object-top w-full h-full rounded-xl"
-              // src={registerImg}
+              src={img}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-
-          <div className="relative">
-            <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
-              <h3 className="text-4xl font-bold text-white">
-                Join with Us to Get & <br className="hidden xl:block" />
-                Awesome Healt Foods
-              </h3>
-              <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
-                <li className="flex items-center space-x-3">
-                  <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
-                    <BsCheck className="text-white"></BsCheck>
-                  </div>
-                  <span className="text-lg font-medium text-white">
-                    Quality Foods
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
-                    <BsCheck className="text-white"></BsCheck>
-                  </div>
-                  <span className="text-lg font-medium text-white">
-                    Fast Delivery
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
-                    <BsCheck className="text-white"></BsCheck>
-                  </div>
-                  <span className="text-lg font-medium text-white">
-                    Fresh Foods
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
-                    <BsCheck className="text-white"></BsCheck>
-                  </div>
-                  <span className="text-lg font-medium text-white">
-                    Reasonable Price
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
@@ -162,7 +88,7 @@ const Register = () => {
               </Link>
             </p>
 
-            <form onSubmit={handleRegister} className="mt-8">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
               <div className="space-y-5">
                 {/* name field */}
                 <div>
@@ -174,11 +100,17 @@ const Register = () => {
                       <AiOutlineUserAdd></AiOutlineUserAdd>
                     </div>
                     <input
-                      type="text"
-                      name="name"
+                      {...register("firstName", { required: true })}
+                      aria-invalid={errors.firstName ? "true" : "false"}
                       placeholder="Enter Your name "
                       className="name-input-field"
                     />
+                    {errors.firstName?.type === "required" && (
+                      <p className="text-red-600 mt-3" role="alert">
+                        {" "}
+                        Name is required Must Not be Empty !
+                      </p>
+                    )}
                   </div>
                 </div>
                 {/* email field */}
@@ -191,11 +123,17 @@ const Register = () => {
                       <MdAlternateEmail></MdAlternateEmail>
                     </div>
                     <input
-                      type="email"
-                      name="email"
+                      {...register("email", { required: true })}
+                      aria-invalid={errors.email ? "true" : "false"}
                       placeholder="Enter email to get started"
                       className="email-input-field"
                     />
+                    {errors.email?.type === "required" && (
+                      <p className="text-red-600 mt-3" role="alert">
+                        {" "}
+                        Email Address is required Must Not be Empty !
+                      </p>
+                    )}
                   </div>
                 </div>
                 {/* Photo url */}
@@ -208,14 +146,13 @@ const Register = () => {
                       <BiPhotoAlbum></BiPhotoAlbum>
                     </div>
                     <input
-                      type="text"
-                      name="photo"
+                      {...register("photo")}
                       placeholder="Enter photo Url"
                       className="email-input-field"
                     />
                   </div>
                 </div>
-                {/* password field*/}
+                {/* password */}
                 <div>
                   <div className="flex items-center justify-between">
                     <label className="text-base font-medium text-gray-900">
@@ -232,11 +169,57 @@ const Register = () => {
                     </div>
 
                     <input
-                      type="password"
-                      name="password"
                       placeholder="Enter your password"
                       className="pass-input-field"
+                      type="password"
+                      {...register("password", {
+                        required: true,
+                        minLength: 6,
+                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                      })}
                     />
+                    {errors.password?.type === "required" && (
+                      <p className="text-red-600">Password is required</p>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                      <p className="text-red-600">
+                        Password must be 6 characters
+                      </p>
+                    )}
+                    {errors.password?.type === "pattern" && (
+                      <p className="text-red-600">
+                        Password must have one Capital letter
+                      </p>
+                    )}
+                  </div>
+                </div>
+                {/* Confirm password */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label className="text-base font-medium text-gray-900">
+                      Confirm Password
+                    </label>
+                  </div>
+                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                    <div className="pass-field-wrap">
+                      <BiFingerprint></BiFingerprint>
+                    </div>
+
+                    <input
+                      placeholder="Enter your password"
+                      className="pass-input-field"
+                      type="password"
+                      {...register("confirm", {
+                        required: true,
+                        validate: (value) => value === watch("password"), // Add a validation function to check if it matches the password
+                      })}
+                    />
+                    {errors.confirm?.type === "required" && (
+                      <p className="text-red-600">Password is required</p>
+                    )}
+                    {errors.confirm?.type === "validate" && (
+                      <p className="text-red-600">Password does not match</p> // Show an error message if the confirm password does not match
+                    )}
                   </div>
                 </div>
 
@@ -251,7 +234,7 @@ const Register = () => {
             </form>
 
             {/* social login */}
-           <SocialLogin></SocialLogin>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

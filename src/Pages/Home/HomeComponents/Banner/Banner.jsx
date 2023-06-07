@@ -14,7 +14,7 @@ const Banner = () => {
   return (
     <Carousel className="mx-auto text-center">
       <div className="relative h-[700px]">
-        <img src={img1} />
+        <img className="" src={img1} />
         <div className="banner-wrap">
           <div>
             <p className="banner-heading">

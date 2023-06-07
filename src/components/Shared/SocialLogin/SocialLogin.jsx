@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { ImFacebook } from "react-icons/im";
 import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -27,7 +26,7 @@ const SocialLogin = () => {
           .then((res) => res.json())
           .then(() => {
             Swal.fire("Good job!", "User Created Successfully!", "success");
-            // navigate(from, { replace: true });
+            navigate(from, { replace: true });
             navigate('/')
           });
       })
@@ -38,6 +37,9 @@ const SocialLogin = () => {
   };
   return (
     <div>
+      <div className=" flex justify-center text-center my-5">
+        <p className="text-center">OR</p>
+      </div>
       <div className="mt-3 space-y-3">
         <button
           onClick={handleGoogleSignUp}
@@ -50,12 +52,6 @@ const SocialLogin = () => {
           Sign in with Google
         </button>
 
-        <button type="button" className="sign-with-fb-btn">
-          <div className="absolute inset-y-0 left-0 p-4">
-            <ImFacebook className="text-blue-800"></ImFacebook>
-          </div>
-          Sign in with Facebook
-        </button>
       </div>
     </div>
   );
