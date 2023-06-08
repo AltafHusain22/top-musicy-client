@@ -86,7 +86,10 @@ const ManageUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Actions</th>
+              <th>Role</th>
+              <th className="text-center">Action</th>
+              <th>Action</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -97,9 +100,10 @@ const ManageUsers = () => {
                   <th> {index + 1}</th>
                   <td> {user.name}</td>
                   <td> {user.email}</td>
+                  <td> {user.role}</td>
                   <td>
                     {user.role === "instructor" ? (
-                      "Insructor  "
+                      <button className="btn btn-disabled w-4/5 ml-3"> Insructor </button>
                     ) : (
                       <button
                         onClick={() => handleMakeInstructor(user)}
@@ -108,9 +112,10 @@ const ManageUsers = () => {
                         Make Instructor
                       </button>
                     )}
-
+                  </td>
+                  <td>
                     {user.role === "admin" ? (
-                      "admin"
+                      <button className="btn btn-disabled"> Admin </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
@@ -119,6 +124,8 @@ const ManageUsers = () => {
                         Make Admin
                       </button>
                     )}
+                  </td>
+                  <td>
                     <button
                       onClick={() => handleDeleteUser(user)}
                       className=" ml-3 btn bg-orange-500 border-none text-white font-bold"
