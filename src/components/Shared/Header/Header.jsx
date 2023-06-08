@@ -8,10 +8,23 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { FiShoppingCart } from "react-icons/fi";
 import logo from "../../../../public/Assets/logo/logo.png";
-// app bar
+import { useState } from "react";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [darkMode, setDarkMode] = useState(false);
+  const darkModeClass = darkMode ? "dark-mode" : "";
+  const darkModeStyles = {
+    backgroundColor: "black",
+    color: "white",
+  };
+  
+  const lightModeStyles = {
+    backgroundColor: "white",
+    color: "black",
+  };
+  
+  const headerStyles = darkMode ? darkModeStyles : lightModeStyles;
 
   const handleLogOut = () => {
     logOut()
@@ -34,7 +47,6 @@ const Header = () => {
       <li>
         <Link to={"/classes"}>Classes</Link>
       </li>
-
     </>
   );
   const userMenu = (
@@ -88,7 +100,10 @@ const Header = () => {
             <>
               {/* avatar */}
               <div className="dropdown dropdown-end mr-5">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar ring ring-danger ring-offset-base-100 ring-offset-2">
+                <label
+                  tabIndex={0}
+                  className="btn btn-ghost btn-circle avatar ring ring-danger ring-offset-base-100 ring-offset-2"
+                >
                   <div className="w-10 rounded-full">
                     <img src={user.photoURL} />
                   </div>
@@ -100,13 +115,19 @@ const Header = () => {
                   {userMenu}
                 </ul>
               </div>
-             
             </>
           ) : (
             <Link to={"/login"}>
               <button className="btn btn-outline text-white mr-5">Login</button>
             </Link>
           )}
+
+          <button
+            className="btn btn-outline text-white mr-2"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </button>
         </div>
       </div>
     </nav>

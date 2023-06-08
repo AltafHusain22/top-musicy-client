@@ -19,7 +19,7 @@ const Banner = () => {
           <div>
             <p className="banner-heading">
               Learn The
-              <span className=" Segoe UI Symbol text-[#FF7703]">Music</span>{" "}
+              <span className=" Segoe UI Symbol text-[#FF7703] ml-1"> Music</span>{" "}
               <br /> <span className="leading-10">From The Masters</span>
             </p>
             <p className="banner-sub-title">

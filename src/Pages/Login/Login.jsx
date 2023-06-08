@@ -31,7 +31,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         Swal.fire("Good job!", "LogIn Successfully!", "success");
-        navigate(from || "/");
+        navigate(from , {replace:true});
       })
       .catch((error) => {
         const errorCode = error.code;
