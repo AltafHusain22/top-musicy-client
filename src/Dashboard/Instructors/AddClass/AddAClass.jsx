@@ -21,12 +21,14 @@ const AddAClass = () => {
   });
 
   const onSubmit = (data) => {
+    const classData = { className: data.className , email: data.email , image : data.image , instructorName: data.instructorName , price : parseFloat(data.price) , seat : parseInt(data.seat)}
+    console.log(data)
     fetch(`http://localhost:5000/addclass`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(classData),
     })
       .then((res) => res.json())
       .then((data) => {

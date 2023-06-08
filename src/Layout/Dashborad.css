@@ -2,5 +2,6 @@
 	@apply text-white font-bold w-96 py-8 px-4 h-screen bg-gray-800 
 }
 .item-text{
-	@apply block py-4 px-3 rounded-md bg-orange-500  hover:bg-gray-700 text-center
+	@apply  py-4 px-3 rounded-md bg-orange-500  hover:bg-gray-700 text-center 
+	flex gap-3
 }
