@@ -1,0 +1,28 @@
+[
+  {
+    "name": "John Smith",
+    "image": "https://i.ibb.co/nznCbb9/instructor-1.jpg"
+  },
+  {
+    "name": "Emily Johnson",
+    "image": "https://i.ibb.co/zNYZzFQ/instructor-2.jpg"
+  },
+  {
+    "name": "Michael Davis",
+    "image": "https://i.ibb.co/N2sZYyZ/instructor-3.jpg"
+  },
+
+  {
+    "name": "David Thompson",
+    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/shutterstock_1612153101-500x500.jpg"
+  },
+  {
+    "name": "Jennifer Lee",
+    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/9553186-500x500.jpg"
+  },
+  {
+    "name": "Jennifer Lee",
+    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/shutterstock_225333688-500x500.jpg"
+  }
+
+]

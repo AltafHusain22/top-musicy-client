@@ -1,18 +1,21 @@
-/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddAClass = () => {
+  const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const [isPending, setIsPending] = useState(false);
+  const image_upload_token = import.meta.env.VITE_image_upload_token;
+  const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_upload_token}`;
+
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -21,23 +24,39 @@ const AddAClass = () => {
   });
 
   const onSubmit = (data) => {
-    const classData = { className: data.className , email: data.email , image : data.image , instructorName: data.instructorName , price : parseFloat(data.price) , seat : parseInt(data.seat)}
-    console.log(data)
-    fetch(`http://localhost:5000/addclass`, {
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    fetch(image_hosting_url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(classData),
+      body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          Swal.fire("Great!", "Class Added Successfylly !", "success");
-          reset();
+      .then((imageRes) => {
+        if (imageRes.success) {
+          const imgUrl = imageRes.data.display_url;
+          const { className, email, instructorName, price, seat } = data;
+          const classData = {
+            className,
+            email,
+            image: imgUrl,
+            instructorName,
+            price: parseFloat(price),
+            seat: parseInt(seat),
+          };
+          axiosSecure.post("/addclass", classData)
+            .then((data) => {
+               console.log(data)
+            if (data.config.data) {
+              Swal.fire("Great!", "Class Added Successfylly !", "success");
+              
+            }
+              setIsPending(true);
+              reset();
+          });
         }
-        setIsPending(true);
       });
+
+
   };
 
   return (
@@ -72,11 +91,10 @@ const AddAClass = () => {
                     </label>
                     <div className="mt-2.5 relative">
                       <input
-                        {...register("image", { required: true })}
-                        type="text"
                         name="image"
-                        placeholder="Enter image URL"
-                        className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                        type="file"
+                        {...register("image", { required: true })}
+                        className="file-input file-input-bordered w-full "
                       />
                     </div>
                   </div>
