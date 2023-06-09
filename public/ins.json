@@ -1,0 +1,57 @@
+[
+  {
+    "instructor_name": "John Doe",
+    "instructor_email": "johndoe@example.com",
+    "instructor_image": "https://example.com/instructor1.jpg",
+    "class_name": "Beginner's Guide to Language X",
+    "class_image": "https://example.com/course1.jpg",
+    "available_seats": 10,
+    "price": 99.99,
+    "class_status": "pending",
+    "enrolled_class": 0
+  },
+  {
+    "instructor_name": "Jane Smith",
+    "instructor_email": "janesmith@example.com",
+    "instructor_image": "https://example.com/instructor2.jpg",
+    "class_name": "Intermediate Language Y",
+    "class_image": "https://example.com/course2.jpg",
+    "available_seats": 15,
+    "price": 149.99,
+    "class_status": "pending",
+    "enrolled_class": 0
+  },
+  {
+    "instructor_name": "Michael Johnson",
+    "instructor_email": "michaeljohnson@example.com",
+    "instructor_image": "https://example.com/instructor3.jpg",
+    "class_name": "Advanced Language Z",
+    "class_image": "https://example.com/course3.jpg",
+    "available_seats": 5,
+    "price": 199.99,
+    "class_status": "pending",
+    "enrolled_class": 0
+  },
+  {
+    "instructor_name": "Emily Brown",
+    "instructor_email": "emilybrown@example.com",
+    "instructor_image": "https://example.com/instructor4.jpg",
+    "class_name": "Conversational Language A",
+    "class_image": "https://example.com/course4.jpg",
+    "available_seats": 12,
+    "price": 79.99,
+    "class_status": "pending",
+    "enrolled_class": 0
+  },
+  {
+    "instructor_name": "Daniel Wilson",
+    "instructor_email": "danielwilson@example.com",
+    "instructor_image": "https://example.com/instructor5.jpg",
+    "class_name": "Business Language B",
+    "class_image": "https://example.com/course5.jpg",
+    "available_seats": 8,
+    "price": 129.99,
+    "class_status": "pending",
+    "enrolled_class": 0
+  }
+]

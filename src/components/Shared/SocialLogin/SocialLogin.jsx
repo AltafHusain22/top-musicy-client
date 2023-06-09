@@ -15,7 +15,7 @@ const SocialLogin = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        const userInfo = { name: user.displayName, email: user.email };
+        const userInfo = { name: user.displayName, email: user.email, role: 'user' };
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {

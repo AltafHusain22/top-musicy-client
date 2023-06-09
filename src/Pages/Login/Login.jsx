@@ -27,7 +27,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    loginUser(data)
+    loginUser(data.email , data.password)
       .then((userCredential) => {
         const user = userCredential.user;
         Swal.fire("Good job!", "LogIn Successfully!", "success");
@@ -103,6 +103,7 @@ const Login = () => {
                     </div>
 
                     <input
+                      type="password"
                       {...register("password", { required: true })}
                       placeholder="Enter your password"
                       className="pass-input-field"

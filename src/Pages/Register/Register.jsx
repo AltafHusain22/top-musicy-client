@@ -17,20 +17,24 @@ import "react-toastify/dist/ReactToastify.css";
 import SocialLogin from "../../components/shared/SocialLogin/SocialLogin";
 import img from "../../../public/Assets/Login&Registration/1.jpg";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [axiosSecure] = useAxiosSecure()
 
   const onSubmit = (data) => {
+
     createUser(data.email, data.password).
       then((result) => {
-      const loggedUser = result.user;
-      updateUserProfile(data.name, data.photoURL)
+        const loggedUser = result.user;
+        updateUserProfile(data.name, data.photo)
+          
         .then(() => {
-          console.log(data.name)
-          const saveUser = { name: data.name, email: data.email };
+          console.log(data)
+          const saveUser = { name: data.name, email: data.email , role: 'user', image : data.photo};
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {

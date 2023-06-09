@@ -13,6 +13,10 @@ import ManageUsers from "../Dashboard/Admin/ManageUsers/ManageUsers";
 import AdminHome from "../Dashboard/Admin/AdminHome/AdminHome";
 import AddAClass from "../Dashboard/Instructors/AddClass/AddAClass";
 import MyClassess from "../Dashboard/Instructors/MyClassess/MyClassess";
+import InstructorHome from "../Dashboard/Instructors/InstructorHome/InstructorHome";
+import SelectedClasses from "../Dashboard/Student/SelectedClasses/SelectedClasses";
+import EnrolledClasses from "../Dashboard/Student/EnrolledClasses/EnrolledClasses";
+import PrivateRotes from "../PrivateRoute/PrivateRotes";
 
 
 export const router = createBrowserRouter([
@@ -55,29 +59,40 @@ export const router = createBrowserRouter([
       //  --------------------------------------//
       {
         path: "adminhome",
-        element: <AdminHome></AdminHome>,
+        element: <PrivateRotes><AdminHome></AdminHome></PrivateRotes>,
       },
       {
         path: "manageclasses",
-        element: <ManageClasses></ManageClasses>,
+        element: <PrivateRotes><ManageClasses></ManageClasses></PrivateRotes>,
       },
       {
         path: "mangeusers",
-        element: <ManageUsers></ManageUsers>,
+        element: <PrivateRotes><ManageUsers></ManageUsers></PrivateRotes>,
       },
              // instructor routes //
       //  --------------------------------------//
       {
         path: "instructorhome",
-        element: <AdminHome></AdminHome>,
+        element: <InstructorHome></InstructorHome>,
       },
       {
         path: "addclass",
-        element: <AddAClass></AddAClass>,
+        element: <PrivateRotes><AddAClass></AddAClass></PrivateRotes>,
       },
       {
         path: "myclassess",
-        element: <MyClassess></MyClassess>,
+        element: <PrivateRotes><MyClassess></MyClassess></PrivateRotes>,
+      },
+  
+             // students routes //
+      //  --------------------------------------//
+      {
+        path: "selectedClasses",
+        element: <PrivateRotes><SelectedClasses></SelectedClasses></PrivateRotes>,
+      },
+      {
+        path: "enrolledClasses",
+        element: <PrivateRotes><EnrolledClasses></EnrolledClasses></PrivateRotes>,
       },
   
 

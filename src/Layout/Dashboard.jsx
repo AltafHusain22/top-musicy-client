@@ -48,7 +48,7 @@ const Dashboard = () => {
         {!isInstructor && !isAdmin && (
           <>
             <h2 className="text-2xl font-bold mb-6 text-center">
-              User Dashboard
+              Student Dashboard
             </h2>
           </>
         )}
@@ -109,13 +109,13 @@ const Dashboard = () => {
           {!isInstructor && !isAdmin && (
             <>
               <li className="">
-                <Link to={"/dashboard/addclass"} className="item-text ">
-                  User item 1
+                <Link to={"/dashboard/selectedClasses"} className="item-text ">
+                My Selected Classes
                 </Link>
               </li>
               <li>
-                <Link to={"/dashboard/myclassess"} className="item-text">
-                  user item 2
+                <Link to={"/dashboard/enrolledClasses"} className="item-text">
+                My Enrolled Classes
                 </Link>
               </li>
 
