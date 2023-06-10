@@ -69,10 +69,10 @@ const ManageClasses = () => {
   const handleFeedback = (feedback) => {};
 
   return (
-    <div className="w-full">
+    <div className="">
       <h2 className="text-center font-bold text-3xl my-5">Manage Classes</h2>
 
-      <div className="overflow-x-auto">
+      <div className="">
         <table className="table">
           {/* head */}
           <thead>

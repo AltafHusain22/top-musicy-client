@@ -10,9 +10,10 @@ const Classess = () => {
   const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const { data: classes = [], isLoading } = useQuery(["classes"], async () => {
-    const res = await fetch("http://localhost:5000/allclasses");
+    const res = await fetch("http://localhost:5000/approvedclass");
     return res.json();
   });
+
 
   if (isLoading) {
     return (
@@ -43,22 +44,31 @@ const Classess = () => {
   // handleSelectClasses // class will post to db
 
   const handleSelectClasses = (selectedClass) => {
-    const { className, instructorName, price } = selectedClass;
-    fetch(`http://localhost:5000/userselectedclass/`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(selectedClass),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire("Good job!", "Selected Successfully!", "success");
-        }
-      });
+    if (user && user.email) {
+      const dataToSend = {
+        ...selectedClass,
+        UserEmail: user.email
+      };
+  
+      fetch("http://localhost:5000/userselectedclass/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dataToSend)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire("Good job!", "Selected Successfully!", "success");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
-
+  
   return (
     <div className="my-20">
       <div className="grid md:grid-cols-3 gap-5 mb-10 w-2/3 mx-auto">
