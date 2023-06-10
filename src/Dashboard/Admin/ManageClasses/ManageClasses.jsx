@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageClasses = () => {
@@ -29,7 +30,6 @@ const ManageClasses = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           refetch();
           Swal.fire({
@@ -43,12 +43,37 @@ const ManageClasses = () => {
       });
   };
 
+  // handleDeny status
+
+  const handleDeny = (status) => {
+    fetch(`http://localhost:5000/deny/${status}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Class Denied!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
+  // handleFeedback
+  const handleFeedback = (feedback) => {};
+
   return (
     <div className="w-full">
-      <h2>Manage Classes</h2>
+      <h2 className="text-center font-bold text-3xl my-5">Manage Classes</h2>
 
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table">
           {/* head */}
           <thead>
             <tr>
@@ -56,10 +81,10 @@ const ManageClasses = () => {
               <th>Class Name</th>
               <th>Instructor Name</th>
               <th>Instructor Email</th>
-              <th>Available Seats</th>
+              <th>Seats</th>
               <th>Price</th>
               <th>Status</th>
-              <th>Action</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -80,18 +105,36 @@ const ManageClasses = () => {
                 <td>{classItem.price}</td>
                 <td>{classItem.status}</td>
                 <td>
+                  {/* approve */}
                   {classItem.status === "approved" ? (
-                    <button className="btn btn-disabled w-4/5 ml-3">
+                    <button className="btn btn-sm btn-disabled ml-3">
                       Approved
                     </button>
                   ) : (
                     <button
                       onClick={() => handlePending(classItem.status)}
-                      className="  ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
+                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
                     >
                       Approve
                     </button>
                   )}
+
+                  {/* deny */}
+                  {classItem.status === "denied" ? (
+                    <button className="btn btn-disabled ml-3">Denied</button>
+                  ) : (
+                    <button
+                      onClick={() => handleDeny(classItem.status)}
+                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
+                    >
+                      Deny
+                    </button>
+                  )}
+                  <Link to={'/dashboard/feedback'}
+                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
+                    >
+                      FeedBack
+                    </Link>
                 </td>
               </tr>
             ))}

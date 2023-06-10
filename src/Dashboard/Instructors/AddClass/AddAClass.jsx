@@ -42,11 +42,12 @@ const AddAClass = () => {
             instructorName,
             price: parseFloat(price),
             seat: parseInt(seat),
-            status: 'pending'
+            status: 'pending',
+            instructor_img : user.photoURL
           };
+          console.log(classData)
           axiosSecure.post("/addclass", classData)
             .then((data) => {
-               console.log(data)
             if (data.config.data) {
               Swal.fire("Great!", "Class Added Successfylly !", "success");
               

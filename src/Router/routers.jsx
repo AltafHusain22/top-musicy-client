@@ -17,6 +17,7 @@ import InstructorHome from "../Dashboard/Instructors/InstructorHome/InstructorHo
 import SelectedClasses from "../Dashboard/Student/SelectedClasses/SelectedClasses";
 import EnrolledClasses from "../Dashboard/Student/EnrolledClasses/EnrolledClasses";
 import PrivateRotes from "../PrivateRoute/PrivateRotes";
+import Feedback from "../Dashboard/Admin/Feedback/Feedback";
 
 
 export const router = createBrowserRouter([
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "mangeusers",
         element: <PrivateRotes><ManageUsers></ManageUsers></PrivateRotes>,
+      },
+      {
+        path: "feedback",
+        element: <PrivateRotes><Feedback></Feedback></PrivateRotes>,
       },
              // instructor routes //
       //  --------------------------------------//

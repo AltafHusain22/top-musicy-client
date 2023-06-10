@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <section className="py-10 bg-gray-100 sm:py-16 lg:py-24">
+    <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 max-w-screen-2xl mx-auto">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid items-center grid-cols-1 gap-y-8 lg:grid-cols-2 gap-x-16 xl:gap-x-24">
           <div className="relative mb-12">
@@ -51,9 +51,14 @@ const AboutUs = () => {
               Build a perfect Career with Us.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-gray-600">
-			Our mission is to inspire and empower students of all ages to explore the world of music. Whether you're a beginner taking your first steps in music or an advanced musician looking to refine your skills, we're here to guide you on your musical journey. We provide lessons in various instruments, including piano, guitar, violin, drums, and more.
-    </p>.
-            
+              Our mission is to inspire and empower students of all ages to
+              explore the world of music. Whether you're a beginner taking your
+              first steps in music or an advanced musician looking to refine
+              your skills, we're here to guide you on your musical journey. We
+              provide lessons in various instruments, including piano, guitar,
+              violin, drums, and more.
+            </p>
+            .
             <a
               href="#"
               title=""

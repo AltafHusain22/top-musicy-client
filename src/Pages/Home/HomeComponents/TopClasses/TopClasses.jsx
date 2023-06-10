@@ -13,7 +13,7 @@ const TopClasses = () => {
   }, []);
 
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto">
       <div className="text-center w-full md:w-2/5 md:mx-auto my-[100px]">
         <p className="text-[#D99904] mb-2 text-xl font-bold">
           Top Classes 

@@ -28,7 +28,7 @@ const Dashboard = () => {
     <div className="flex">
       {/* Sidebar */}
 
-      <div className="sidebar-wrap  ">
+      <div className="sidebar-wrap ">
         {isAdmin && (
           <>
             <h2 className="text-2xl font-bold mb-6 text-center">
@@ -110,12 +110,12 @@ const Dashboard = () => {
             <>
               <li className="">
                 <Link to={"/dashboard/selectedClasses"} className="item-text ">
-                My Selected Classes
+                <MdOutlineClass className="text-xl"></MdOutlineClass> My Selected Classes
                 </Link>
               </li>
               <li>
                 <Link to={"/dashboard/enrolledClasses"} className="item-text">
-                My Enrolled Classes
+                <MdClass className="text-xl"></MdClass> My Enrolled Classes
                 </Link>
               </li>
 
@@ -124,7 +124,7 @@ const Dashboard = () => {
 
               <li>
                 <Link to={"/"} className="item-text">
-                  Home
+                <AiOutlineHome className="text-xl"></AiOutlineHome> Home
                 </Link>
               </li>
             </>

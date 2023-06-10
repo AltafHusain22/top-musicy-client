@@ -11,7 +11,7 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-    <Carousel className="mx-auto text-center">
+    <Carousel className="mx-auto text-center max-w-screen-2xl">
       <div className="relative h-[700px]">
         <img className="" src={img1} />
         <div className="banner-wrap">
