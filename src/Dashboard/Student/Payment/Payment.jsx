@@ -2,7 +2,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckOut from "./CheckOut";
 import { Elements } from "@stripe/react-stripe-js";
 import { useLocation } from "react-router-dom";
-// import useSelectedClass from "../../../hooks/useSelectedClass";
 const stripePromise = loadStripe(import.meta.env.VITE_payment_getway_pk);
 
 const Payment = () => {
@@ -11,8 +10,6 @@ const Payment = () => {
   const stateValue = location.state 
   const Cartprice = parseFloat(stateValue.price)
 
-
-  // const [ , selectedClass] = useSelectedClass()
 
   return (
     <div className="w-2/3">

@@ -2,30 +2,25 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
 
 const UpdateClass = () => {
   const location = useLocation();
   const stateValue = location.state;
-
-  const [axiosSecure] = useAxiosSecure();
+  const id = stateValue._id;
   const { user } = useAuth();
   const [isPending, setIsPending] = useState(false);
   const image_upload_token = import.meta.env.VITE_image_upload_token;
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_upload_token}`;
 
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: {
-      firstName: "",
-      select: {},
-    },
-  });
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
     formData.append("image", data.image[0]);
+
     fetch(image_hosting_url, {
       method: "POST",
       body: formData,
@@ -34,27 +29,34 @@ const UpdateClass = () => {
       .then((imageRes) => {
         if (imageRes.success) {
           const imgUrl = imageRes.data.display_url;
-          const { className, email, instructorName, price, seat } = data;
-          const classData = {
-            className,
-            email,
+
+          const updatedData = {
+            ...data,
             image: imgUrl,
-            instructorName,
-            price: parseFloat(price),
-            seat: parseInt(seat),
-            instructor_img: user.photoURL,
-            status: "pending",
-            enrolled: 0,
           };
-          console.log(classData);
-          axiosSecure.post("/addclass", classData).then((data) => {
-            if (data.config.data) {
-              Swal.fire("Great!", "Class updated Successfylly !", "success");
-            }
-            setIsPending(true);
-            reset();
-          });
+
+          fetch(`http://localhost:5000/myclasses/${id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.modifiedCount > 0) {
+                Swal.fire("Great!", "Class updated successfully!", "success");
+              }
+              setIsPending(true);
+              reset();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
