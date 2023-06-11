@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 max-w-screen-2xl mx-auto">
+    <section className="py-10 bg-gray-100 sm:py-16 lg:py-24 max-w-screen-2xl mx-auto ">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid items-center grid-cols-1 gap-y-8 lg:grid-cols-2 gap-x-16 xl:gap-x-24">
           <div className="relative mb-12">

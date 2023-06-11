@@ -20,12 +20,14 @@ import PrivateRotes from "../PrivateRoute/PrivateRotes";
 import Feedback from "../Dashboard/Admin/Feedback/Feedback";
 import Payment from "../Dashboard/Student/Payment/Payment";
 import PaymentHistry from "../Dashboard/Student/PaymentHistry/PaymentHistry";
+import Error from "../Pages/404/Error";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",

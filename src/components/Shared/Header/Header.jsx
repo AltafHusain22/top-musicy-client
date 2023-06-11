@@ -6,25 +6,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { FiShoppingCart } from "react-icons/fi";
 import logo from "../../../../public/Assets/logo/logo.png";
-import { useState } from "react";
+
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [darkMode, setDarkMode] = useState(false);
-  const darkModeClass = darkMode ? "dark-mode" : "";
-  const darkModeStyles = {
-    backgroundColor: "black",
-    color: "white",
-  };
-  
-  const lightModeStyles = {
-    backgroundColor: "white",
-    color: "black",
-  };
-  
-  const headerStyles = darkMode ? darkModeStyles : lightModeStyles;
+  const hanldeDarkMode = () => {
+    
+  }
 
   const handleLogOut = () => {
     logOut()
@@ -60,7 +49,7 @@ const Header = () => {
     </>
   );
   return (
-    <nav className=" ">
+    <nav>
       <div className="navbar px-10 md:py-5 z-10 bg-opacity-1 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
         <div className="navbar-start ">
           <div className="dropdown">
@@ -122,12 +111,16 @@ const Header = () => {
             </Link>
           )}
 
-          <button
-            className="btn btn-outline text-white mr-2"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "Light Mode" : "Dark Mode"}
-          </button>
+          <div className="dark_mode">
+            <input
+              className="dark_mode_input"
+              type="checkbox"
+              id="darkmode-toggle"
+            />
+            <label onClick={hanldeDarkMode} className="dark_mode_label" htmlFor="darkmode-toggle">
+          
+            </label>
+          </div>
         </div>
       </div>
     </nav>
