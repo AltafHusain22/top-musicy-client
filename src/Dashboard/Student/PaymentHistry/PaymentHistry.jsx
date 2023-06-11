@@ -1,26 +1,25 @@
 import useEnrolledClasses from "../../../hooks/useEnrolledClasses";
 
-const EnrolledClasses = () => {
+const PaymentHistry = () => {
 
+	
 	const [ , enrolledclasses] = useEnrolledClasses()
-
-
-
   return (
     <div>
       <h2 className="text-center mx-auto font-bold text-4xl mb-10">
         My Enrolled Classes
       </h2>
-  
+
       <div className="overflow-x-auto w-full">
         <table className="table table-zebra w-full">
           {/* head */}
           <thead>
             <tr>
               <th></th>
-              <th>Class Name</th>
-              <th>Instructor Name </th>
-              <th>Price </th>
+              <th>ClassName</th>
+              <th>Transection Id</th>
+              <th>Amount</th>
+              <th>Date </th>
             </tr>
           </thead>
           <tbody>
@@ -30,9 +29,9 @@ const EnrolledClasses = () => {
                 <tr key={index}>
                   <th>{index + 1}</th>
                   <td>{classItem.className}</td>
-                  <td>{classItem.InstructorName}</td>
+                  <td>{classItem.transectionId}</td>
                   <td>${classItem.price}</td>
-           
+                  <td>{classItem.data}</td>
                 </tr>
               ))}
             </>
@@ -43,4 +42,4 @@ const EnrolledClasses = () => {
   );
 };
 
-export default EnrolledClasses;
+export default PaymentHistry;

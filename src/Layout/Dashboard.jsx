@@ -5,7 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./Dashborad.css";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
-import { MdClass, MdOutlineClass } from "react-icons/md";
+import { MdClass, MdOutlineClass, MdPayment } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import useUser from "../hooks/useUser";
@@ -154,6 +154,11 @@ const Dashboard = () => {
               <li>
                 <Link to={"/dashboard/enrolledClasses"} className="item-text">
                   <MdClass className="text-xl"></MdClass> My Enrolled Classes
+                </Link>
+              </li>
+              <li>
+                <Link to={"/dashboard/paymenthistry"} className="item-text">
+                  <MdPayment className="text-xl"></MdPayment> Payment Histry
                 </Link>
               </li>
 

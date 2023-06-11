@@ -19,6 +19,7 @@ import EnrolledClasses from "../Dashboard/Student/EnrolledClasses/EnrolledClasse
 import PrivateRotes from "../PrivateRoute/PrivateRotes";
 import Feedback from "../Dashboard/Admin/Feedback/Feedback";
 import Payment from "../Dashboard/Student/Payment/Payment";
+import PaymentHistry from "../Dashboard/Student/PaymentHistry/PaymentHistry";
 
 
 export const router = createBrowserRouter([
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
       {
         path: "checkout",
         element: <PrivateRotes><Payment></Payment></PrivateRotes>,
+      },
+      {
+        path: "paymenthistry",
+        element: <PrivateRotes><PaymentHistry></PaymentHistry></PrivateRotes>,
       },
   
 
