@@ -15,7 +15,7 @@ const ManageClasses = () => {
     const res = await fetch("http://localhost:5000/allclasses");
     return res.json();
   });
-  console.log(typeof data);
+
 
   if (isLoading) {
     return (
@@ -67,10 +67,6 @@ const ManageClasses = () => {
       });
   };
 
-  // handleFeedback
- const sendFeedBack = (feedback) => {
-     
-  };
 
   return (
     <div className="">
@@ -138,7 +134,7 @@ const ManageClasses = () => {
               {classItem.status === "denied" &&
                  
                 <Link
-                  onClick={()=>sendFeedBack(classItem._id)}
+                  state={classItem}
                   to={'/dashboard/feedback'}
                   className=" w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
                 >

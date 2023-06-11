@@ -1,22 +1,22 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import { useLocation } from "react-router-dom";
 
-const AddAClass = () => {
+const UpdateClass = () => {
+  const location = useLocation();
+  const stateValue = location.state;
+
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const [isPending, setIsPending] = useState(false);
   const image_upload_token = import.meta.env.VITE_image_upload_token;
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_upload_token}`;
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       firstName: "",
       select: {},
@@ -43,31 +43,25 @@ const AddAClass = () => {
             price: parseFloat(price),
             seat: parseInt(seat),
             instructor_img: user.photoURL,
-            feedback: '',
-            status: 'pending',
-            enrolled: 0
-          
+            status: "pending",
+            enrolled: 0,
           };
-          console.log(classData)
-          axiosSecure.post("/addclass", classData )
-            .then((data) => {
+          console.log(classData);
+          axiosSecure.post("/addclass", classData).then((data) => {
             if (data.config.data) {
-              Swal.fire("Great!", "Class Added Successfylly !", "success");
-              
+              Swal.fire("Great!", "Class updated Successfylly !", "success");
             }
-              setIsPending(true);
-              reset();
+            setIsPending(true);
+            reset();
           });
         }
       });
-
-
   };
 
   return (
-    <section className=" bg-gray-100 pt-10 h-screen">
+    <section className=" bg-gray-100 pt-10 h-full">
       <h3 className=" mb-10 text-3xl font-semibold text-center text-gray-900">
-        Add a Class
+        Update Class
       </h3>
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-5xl mx-auto ">
@@ -81,6 +75,7 @@ const AddAClass = () => {
                     </label>
                     <div className="mt-2.5 relative">
                       <input
+                        defaultValue={stateValue.className}
                         {...register("className", { required: true })}
                         type="text"
                         name="className"
@@ -138,6 +133,7 @@ const AddAClass = () => {
                     </label>
                     <div className="mt-2.5 relative">
                       <input
+                        defaultValue={stateValue.price}
                         {...register("price", { required: true })}
                         type="text"
                         name="price"
@@ -152,6 +148,7 @@ const AddAClass = () => {
                     </label>
                     <div className="mt-2.5 relative">
                       <input
+                        defaultValue={stateValue.seat}
                         {...register("seat", { required: true })}
                         type="text"
                         name="seat"
@@ -170,7 +167,7 @@ const AddAClass = () => {
                       onClick={handleSubmit}
                       disabled={isPending}
                     >
-                      {isPending ? "Pending" : "Add a Class"}
+                      {isPending ? "Pending" : "Update Class"}
                     </button>
                   </div>
                 </div>
@@ -183,4 +180,4 @@ const AddAClass = () => {
   );
 };
 
-export default AddAClass;
+export default UpdateClass;

@@ -21,6 +21,7 @@ import Feedback from "../Dashboard/Admin/Feedback/Feedback";
 import Payment from "../Dashboard/Student/Payment/Payment";
 import PaymentHistry from "../Dashboard/Student/PaymentHistry/PaymentHistry";
 import Error from "../Pages/404/Error";
+import UpdateClass from "../Dashboard/Instructors/UpdateClass/UpdateClass";
 
 
 export const router = createBrowserRouter([
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "myclassess",
         element: <PrivateRotes><MyClassess></MyClassess></PrivateRotes>,
+      },
+      {
+        path: "updateClass",
+        element: <PrivateRotes><UpdateClass></UpdateClass></PrivateRotes>,
       },
   
              // students routes //

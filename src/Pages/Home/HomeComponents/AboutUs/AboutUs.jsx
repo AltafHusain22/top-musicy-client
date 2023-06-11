@@ -52,9 +52,9 @@ const AboutUs = () => {
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-gray-600">
               Our mission is to inspire and empower students of all ages to
-              explore the world of music. Whether you're a beginner taking your
+              explore the world of music. Whether youre a beginner taking your
               first steps in music or an advanced musician looking to refine
-              your skills, we're here to guide you on your musical journey. We
+              your skills, were here to guide you on your musical journey. We
               provide lessons in various instruments, including piano, guitar,
               violin, drums, and more.
             </p>

@@ -1,27 +1,31 @@
-
+import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Feedback = () => {
+  const location = useLocation();
+  const stateValue = location.state;
+  const id = stateValue._id
+  
 
-
-   const handleFeedback = (event, feedback) => {
-    console.log(feedback)
+  const handleFeedback = (event) => {
     event.preventDefault();
     const form = event.target;
     const fb = form.feedback.value;
 
     // Send the feedback to the API
-    fetch(`http://localhost:5000/addclass/${feedback}`, {
-      method: "POST",
+    fetch(`http://localhost:5000/insertFeedback/${id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ feedback: fb }), // Wrap the feedback in an object
+      body: JSON.stringify({fb}),
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        if (result.modifiedCount > 0) { 
+          Swal.fire("Good!", "FeedBack has been sent to instructor !", "success");
+        }
       });
-    
   };
 
   return (

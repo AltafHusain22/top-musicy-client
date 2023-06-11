@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useMyClasses from "../../../hooks/useMyClasses";
 
 const MyClassess = () => {
@@ -41,8 +42,8 @@ const MyClassess = () => {
                     <td className="w-1/12">{classItem.price}</td>
                     <td className="w-1/12 font-bold text-orange-600">{classItem.status}</td>
                     <td className="w-1/12 font-bold text-orange-600">{classItem.enrolled}</td>
-                    <td className="w-1/12 font-bold text-orange-600">Feedback</td>
-                    <td className="w-1/12"><button className="btn bg-orange">Update</button></td>
+                    <td className="w-1/12 font-bold text-orange-600">{classItem.feedback.fb}</td>
+                    <td className="w-1/12"><Link state={classItem} to={'/dashboard/updateClass'} className="btn bg-orange">Update</Link></td>
          
                   </tr>
                 ))}
