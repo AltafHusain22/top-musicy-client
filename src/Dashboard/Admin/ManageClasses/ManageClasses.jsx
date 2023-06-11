@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+
+
 const ManageClasses = () => {
   const {
     data: classes = [],
@@ -66,81 +68,92 @@ const ManageClasses = () => {
   };
 
   // handleFeedback
-  const handleFeedback = (feedback) => {};
+ const sendFeedBack = (feedback) => {
+     
+  };
 
   return (
     <div className="">
       <h2 className="text-center font-bold text-3xl my-5">Manage Classes</h2>
 
-      <div className="">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>Class Image</th>
-              <th>Class Name</th>
-              <th>Instructor Name</th>
-              <th>Instructor Email</th>
-              <th>Seats</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th className="text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* rows */}
-            {classes?.map((classItem) => (
-              <tr key={classItem.id}>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={classItem.image} alt="Class" />
-                    </div>
-                  </div>
-                </td>
-                <td>{classItem.className}</td>
-                <td>{classItem.instructorName}</td>
-                <td>{classItem.email}</td>
-                <td>{classItem.seat}</td>
-                <td>{classItem.price}</td>
-                <td>{classItem.status}</td>
-                <td>
-                  {/* approve */}
-                  {classItem.status === "approved" ? (
-                    <button className="btn btn-sm btn-disabled ml-3">
-                      Approved
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handlePending(classItem.status)}
-                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
-                    >
-                      Approve
-                    </button>
-                  )}
+      <div className="max-w-4/5 mx-auto">
+  <div className="overflow-x-auto">
+    <table className="table w-full">
+      {/* head */}
+      <thead>
+        <tr>
+          <th className="w-1/6">Class Image</th>
+          <th className="w-1/12">Class Name</th>
+          <th className="w-1/12">Instructor Name</th>
+          <th className="w-1/6">Instructor Email</th>
+          <th className="w-1/12">Seats</th>
+          <th className="w-1/12">Price</th>
+          <th className="w-1/12">Status</th>
+          <th className="w-1/6 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {/* rows */}
+        {classes?.map((classItem) => (
+          <tr key={classItem.id}>
+            <td className="w-1/6">
+              <div className="avatar">
+                <div className="mask mask-squircle w-12 h-12">
+                  <img src={classItem.image} alt="Class" />
+                </div>
+              </div>
+            </td>
+            <td className="w-1/2">{classItem.className?.slice(1,30)}.....</td>
+            <td className="w-1/12">{classItem.instructorName}</td>
+            <td className="w-1/12">{classItem.email}</td>
+            <td className="w-1/12">{classItem.seat}</td>
+            <td className="w-1/12">{classItem.price}</td>
+            <td className="w-1/12">{classItem.status}</td>
+            <td className="w-full flex flex-col">
+              {/* approve */}
+              {classItem.status === "approved" ? (
+                <button className=" w-full btn btn-sm btn-disabled font-bold ">
+                  Approved
+                </button>
+              ) : (
+                <button
+                  onClick={() => handlePending(classItem.status)}
+                  className="w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
+                >
+                  Approve
+                </button>
+              )}
 
-                  {/* deny */}
-                  {classItem.status === "denied" ? (
-                    <button className="btn btn-disabled ml-3">Denied</button>
-                  ) : (
-                    <button
-                      onClick={() => handleDeny(classItem.status)}
-                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
-                    >
-                      Deny
-                    </button>
-                  )}
-                  <Link to={'/dashboard/feedback'}
-                      className="ml-3 mr-3 btn bg-orange-500 border-none text-white font-bold"
-                    >
-                      FeedBack
-                    </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              {/* deny */}
+              {classItem.status === "denied" ? (
+                <button className="btn btn-sm btn-disabled mb-3 w-full font-bold text-red-500">Denied</button>
+              ) : (
+                <button
+                  onClick={() => handleDeny(classItem.status)}
+                  className=" w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
+                >
+                  Deny
+                </button>
+              )}
+              {classItem.status === "denied" &&
+                 
+                <Link
+                  onClick={()=>sendFeedBack(classItem._id)}
+                  to={'/dashboard/feedback'}
+                  className=" w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
+                >
+                  FeedBack
+                </Link>
+              }
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
       </div>
+      
+
     </div>
   );
 };

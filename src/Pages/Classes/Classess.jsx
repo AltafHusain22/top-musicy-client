@@ -71,7 +71,7 @@ const Classess = () => {
   
   return (
     <div className="my-20">
-      <div className="grid md:grid-cols-3 gap-5 mb-10 w-2/3 mx-auto">
+      <div className="grid md:grid-cols-3 gap-5 mb-10 max-w-screen-2xl mx-auto">
         {classes?.map((classes, index) => (
           <div key={index}>
             <div
@@ -80,7 +80,7 @@ const Classess = () => {
               }`}
             >
               <figure>
-                <img className="w-96 h-96 object-cover" src={classes.image} />
+                <img className="w-full h-96 object-cover" src={classes.image} />
               </figure>
               <div className="card-body">
                 <h2 className="text-left font-bold text-[19px]">
@@ -90,7 +90,7 @@ const Classess = () => {
                   Instructor Name: {classes.instructorName}
                 </h2>
               </div>
-              <div className="px-5 py-5 flex border-t-2 border-red-100">
+              <div className="px-5 py-5 flex  justify-between border-t-2 border-red-100">
                 <span>
                   <h2 className="text-left font-semibold">
                     Available Seat: {classes.seat}

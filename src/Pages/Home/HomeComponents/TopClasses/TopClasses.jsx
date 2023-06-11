@@ -21,10 +21,10 @@ const TopClasses = () => {
         <h3 className="text-4xl uppercase mt-2 font-bold">Popular Classes</h3>
       </div>
 
-      <div className=" grid md:grid-cols-3 gap-5 mb-10">
+      <div className=" grid md:grid-cols-3 gap-5 mb-10 ">
         {topclasses?.map((topclass) => (
           <div key={topclass._id}>
-            <div className="card card-compact w-full bg-base-100 shadow-xl">
+            <div className="card card-compact w-full bg-base-100 shadow-xl h-96">
               <figure>
                 <img
                   className="h-[300px] w-full object-cover "

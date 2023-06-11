@@ -172,7 +172,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="p-8 mx-auto w-11/12">
+      <div className="p-8 mx-auto w-9/12">
         <Outlet></Outlet>
       </div>
     </div>

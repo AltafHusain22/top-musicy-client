@@ -3,12 +3,15 @@ import { FiTrash2 } from "react-icons/fi";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const SelectedClasses = () => {
   const [refetch, selectedClass] = useSelectedClass();
- 
+  const [price, setPrice] = useState(null)
+  
+
   const handleDeleteClass = (id) => {
-      console.log(id)
+    console.log(id);
     fetch(`http://localhost:5000/class/${id}`, {
       method: "DELETE",
     })
@@ -25,16 +28,22 @@ const SelectedClasses = () => {
           });
         }
       });
-	};
-	
-	const handlePayment = (id) => { 
-		console.log(id)
-	}
+  };
+
+  const handlePayment = (classItem) => {
+    setPrice(classItem)
+  };
+
+  const total = selectedClass.reduce((sum, item)=> item.price + sum , 0)
 
   return (
     <div>
+      
       <h2 className="text-center mx-auto font-bold text-4xl mb-10">
         My Selected Classes
+      </h2>
+      <h2 className=" mx-auto font-bold text-2xl mb-10 text-orange-500">
+         Total Price: ${total}
       </h2>
 
       <div className="overflow-x-auto w-full">
@@ -57,20 +66,19 @@ const SelectedClasses = () => {
                   <th>{index + 1}</th>
                   <td>{classItem.className}</td>
                   <td>{classItem.instructorName}</td>
-                  <td>{classItem.price}</td>
+                  <td>${classItem.price}</td>
                   <td>
                     <button
-                      onClick={() =>
-                        handleDeleteClass(classItem._id)
-                      }
+                      onClick={() => handleDeleteClass(classItem._id)}
                       className=" ml-3 btn bg-orange-500 border-none text-white font-bold"
                     >
                       <FiTrash2></FiTrash2>
                     </button>
-                    <Link to={'/dashboard/checkout'}
-                      onClick={() =>
-                        handlePayment(classItem._id)
-                      }
+                    <Link
+                      state={classItem}
+                      price={price}
+                      to={"/dashboard/checkout"}
+                      onClick={() => handlePayment(classItem)}
                       className=" ml-3 btn bg-orange-500 border-none text-white font-bold"
                     >
                       PayNow
