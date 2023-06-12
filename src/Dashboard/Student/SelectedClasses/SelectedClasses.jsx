@@ -7,12 +7,11 @@ import { useState } from "react";
 
 const SelectedClasses = () => {
   const [refetch, selectedClass] = useSelectedClass();
-  const [price, setPrice] = useState(null)
-  
+  const [price, setPrice] = useState(null);
 
   const handleDeleteClass = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/class/${id}`, {
+    fetch(`https://top-musicy-server.vercel.app/class/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -31,19 +30,18 @@ const SelectedClasses = () => {
   };
 
   const handlePayment = (classItem) => {
-    setPrice(classItem)
+    setPrice(classItem);
   };
 
-  const total = selectedClass.reduce((sum, item)=> item.price + sum , 0)
+  const total = selectedClass.reduce((sum, item) => item.price + sum, 0);
 
   return (
     <div>
-      
       <h2 className="text-center mx-auto font-bold text-4xl mb-10">
         My Selected Classes
       </h2>
       <h2 className=" mx-auto font-bold text-2xl mb-10 text-orange-500">
-         Total Price: ${total}
+        Total Price: ${total}
       </h2>
 
       <div className="overflow-x-auto w-full">

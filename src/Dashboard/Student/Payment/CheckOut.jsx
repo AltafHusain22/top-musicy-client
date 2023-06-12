@@ -11,7 +11,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 const CheckOut = ({ price, items }) => {
-  const {_id , className , image , instructorName  } = items
+  const { _id, className, image, instructorName } = items;
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState();
@@ -71,21 +71,26 @@ const CheckOut = ({ price, items }) => {
         email: user.email,
         transectionId: paymentIntent.id,
         price,
-        data : new Date(),
+        data: new Date(),
         className: className,
         classId: _id,
         InstructorName: instructorName,
-        image: image, 
-
-        
+        image: image,
       };
-   
 
       axiosSecure.post("/paymenthistory", payment).then((res) => {
         if (res.data.insertedId) {
           Swal.fire("Good job!", "Your payment is Completed!", "success");
         }
       });
+
+      fetch(`https://top-musicy-server.vercel.app/update-seat/${_id}`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
     }
 
     if (confirmError) {

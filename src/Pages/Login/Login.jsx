@@ -12,7 +12,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import SocialLogin from "../../components/shared/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
-import img from "../../..//public/Assets/Login&Registration/1.jpg";
+import img from "../../../src/assets/Assets/Login&Registration/1.jpg";
 
 const Login = () => {
 

@@ -5,11 +5,13 @@ const Instructors = () => {
   const { data: instructors = [], isLoading } = useQuery(
     ["instructors"],
     async () => {
-      const res = await fetch("http://localhost:5000/allclasses");
+      const res = await fetch(
+        "https://top-musicy-server.vercel.app/allclasses"
+      );
       return res.json();
     }
   );
-  console.log( instructors);
+  console.log(instructors);
 
   if (isLoading) {
     return (
@@ -29,16 +31,15 @@ const Instructors = () => {
               <figure>
                 <img
                   className=" w-96 h-96 object-cover"
-                  src={
-                    instructor.instructor_img
-                  }
-                 
+                  src={instructor.instructor_img}
                 />
               </figure>
               <div className="card-body">
-                <h2 className="text-left font-semibold"> Instructor Name: { instructor.instructorName}</h2>
+                <h2 className="text-left font-semibold">
+                  {" "}
+                  Instructor Name: {instructor.instructorName}
+                </h2>
                 <h2 className="font-semibold"> Email : {instructor.email}</h2>
-                  
               </div>
             </div>
           </div>

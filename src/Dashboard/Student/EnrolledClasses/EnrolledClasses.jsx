@@ -4,8 +4,6 @@ const EnrolledClasses = () => {
 
 	const [ , enrolledclasses] = useEnrolledClasses()
 
-
-
   return (
     <div>
       <h2 className="text-center mx-auto font-bold text-4xl mb-10">

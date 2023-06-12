@@ -4,8 +4,7 @@ import Swal from "sweetalert2";
 const Feedback = () => {
   const location = useLocation();
   const stateValue = location.state;
-  const id = stateValue._id
-  
+  const id = stateValue._id;
 
   const handleFeedback = (event) => {
     event.preventDefault();
@@ -13,17 +12,21 @@ const Feedback = () => {
     const fb = form.feedback.value;
 
     // Send the feedback to the API
-    fetch(`http://localhost:5000/insertFeedback/${id}`, {
+    fetch(`https://top-musicy-server.vercel.app/insertFeedback/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({fb}),
+      body: JSON.stringify({ fb }),
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.modifiedCount > 0) { 
-          Swal.fire("Good!", "FeedBack has been sent to instructor !", "success");
+        if (result.modifiedCount > 0) {
+          Swal.fire(
+            "Good!",
+            "FeedBack has been sent to instructor !",
+            "success"
+          );
         }
       });
   };

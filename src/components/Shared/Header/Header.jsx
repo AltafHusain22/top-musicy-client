@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import logo from "../../../../public/Assets/logo/logo.png";
+import logo from "../../../../src/assets/Assets/logo/logo.png";
+import DarkMode from "../DarkMode/DarkModeToggle";
+import DarkModeToggle from "../DarkMode/DarkModeToggle";
 
 
 const Header = () => {
@@ -49,7 +51,8 @@ const Header = () => {
     </>
   );
   return (
-    <nav>
+    <nav className="nav">
+       
       <div className="navbar px-10 md:py-5 z-10 bg-opacity-1 text-slate-200 bg-black max-w-screen-2xl mx-auto font-semibold text-xl ">
         <div className="navbar-start ">
           <div className="dropdown">
@@ -79,7 +82,9 @@ const Header = () => {
           <a className=" text-2xl font-bold flex items-center justify-center">
             <span className="mb-2">Top</span>
             <img className="w-[100px]" src={logo} alt="" />
+            
           </a>
+          
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{menuItems}</ul>
@@ -111,18 +116,10 @@ const Header = () => {
             </Link>
           )}
 
-          <div className="dark_mode">
-            <input
-              className="dark_mode_input"
-              type="checkbox"
-              id="darkmode-toggle"
-            />
-            <label onClick={hanldeDarkMode} className="dark_mode_label" htmlFor="darkmode-toggle">
-          
-            </label>
-          </div>
+           <DarkModeToggle></DarkModeToggle>
         </div>
       </div>
+     
     </nav>
   );
 };

@@ -1,28 +1,29 @@
 [
-  {
-    "name": "John Smith",
-    "image": "https://i.ibb.co/nznCbb9/instructor-1.jpg"
-  },
-  {
-    "name": "Emily Johnson",
-    "image": "https://i.ibb.co/zNYZzFQ/instructor-2.jpg"
-  },
-  {
-    "name": "Michael Davis",
-    "image": "https://i.ibb.co/N2sZYyZ/instructor-3.jpg"
-  },
+	{
+	  "name": "John Smith",
+	  "image": "https://i.ibb.co/nznCbb9/instructor-1.jpg"
+	},
+	{
+	  "name": "Emily Johnson",
+	  "image": "https://i.ibb.co/zNYZzFQ/instructor-2.jpg"
+	},
+	{
+	  "name": "Michael Davis",
+	  "image": "https://i.ibb.co/N2sZYyZ/instructor-3.jpg"
+	},
+	{
+	  "name": "John ray",
+	  "image": "https://i.ibb.co/FV9CYXh/looking-puzzled-confused-insecure-pointing-opposite-directions-with-doubts-1194-75872.webp"
+	},
+	{
+	  "name": "Emily lady",
+	  "image": "https://i.ibb.co/bPZ8pNB/cheerful-business-man-jacket-pointing-with-two-hands-white-wall-171337-29064.webp"
+	},
+	{
+	  "name": "Michael loko",
+	  "image": "https://i.ibb.co/HPNfnhJ/serious-business-man-jacket-crossed-arms-serious-business-man-jacket-crossed-arms-looking-camera-ove.webp"
+	}
 
-  {
-    "name": "David Thompson",
-    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/shutterstock_1612153101-500x500.jpg"
-  },
-  {
-    "name": "Jennifer Lee",
-    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/9553186-500x500.jpg"
-  },
-  {
-    "name": "Jennifer Lee",
-    "image": "http://thesimple.ellethemes.com/wp-content/uploads/2016/05/shutterstock_225333688-500x500.jpg"
-  }
-
-]
+  
+  ]
+  

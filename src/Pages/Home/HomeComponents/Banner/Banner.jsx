@@ -4,9 +4,10 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import img1 from "../../../../../public/Assets/Banner/1.jpg";
-import img2 from "../../../../../public/Assets/Banner/2.jpg";
-import img3 from "../../../../../public/Assets/Banner/3.jpg";
+import img1 from "../../../../../src/assets/Assets/Banner/1.jpg";
+import img2 from "../../../../../src/assets/Assets/Banner/2.jpg";
+import img3 from "../../../../../src/assets/Assets/Banner/3.jpg";
+
 import "./Banner.css";
 
 const Banner = () => {

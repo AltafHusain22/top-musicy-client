@@ -5,7 +5,7 @@ const TopClasses = () => {
   const [topclasses, setTopClasses] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes/top")
+    fetch("https://top-musicy-server.vercel.app/classes/top")
       .then((res) => res.json())
       .then((data) => {
         setTopClasses(data);
@@ -15,9 +15,7 @@ const TopClasses = () => {
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="text-center w-full md:w-2/5 md:mx-auto my-[100px]">
-        <p className="text-[#D99904] mb-2 text-xl font-bold">
-          Top Classes 
-        </p>
+        <p className="text-[#D99904] mb-2 text-xl font-bold">Top Classes</p>
         <h3 className="text-4xl uppercase mt-2 font-bold">Popular Classes</h3>
       </div>
 
@@ -43,7 +41,6 @@ const TopClasses = () => {
                     Available Seat : {topclass.seat}
                   </p>
                 </div>
-             
               </div>
             </div>
           </div>

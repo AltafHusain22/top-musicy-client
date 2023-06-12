@@ -15,8 +15,12 @@ const SocialLogin = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        const userInfo = { name: user.displayName, email: user.email, role: 'user' };
-        fetch("http://localhost:5000/users", {
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          role: "user",
+        };
+        fetch("https://top-musicy-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -27,7 +31,7 @@ const SocialLogin = () => {
           .then(() => {
             Swal.fire("Good job!", "User Created Successfully!", "success");
             navigate(from, { replace: true });
-            navigate('/')
+            navigate("/");
           });
       })
       .catch((error) => {
@@ -51,7 +55,6 @@ const SocialLogin = () => {
           </div>
           Sign in with Google
         </button>
-
       </div>
     </div>
   );

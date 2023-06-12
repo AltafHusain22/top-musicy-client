@@ -35,7 +35,7 @@ const UpdateClass = () => {
             image: imgUrl,
           };
 
-          fetch(`http://localhost:5000/myclasses/${id}`, {
+          fetch(`https://top-musicy-server.vercel.app/myclasses/${id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

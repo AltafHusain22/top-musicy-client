@@ -7,13 +7,13 @@ import "sweetalert2/dist/sweetalert2.min.css";
 // fetch all users from db
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
+    const res = await fetch("https://top-musicy-server.vercel.app/users");
     return res.json();
   });
 
   //   set user role to an instructor
   const handleMakeInstructor = (user) => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+    fetch(`https://top-musicy-server.vercel.app/users/instructor/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -34,7 +34,7 @@ const ManageUsers = () => {
 
   //   set user role to an Admin
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://top-musicy-server.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -55,7 +55,7 @@ const ManageUsers = () => {
 
   // delete a spesific user
   const handleDeleteUser = (user) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://top-musicy-server.vercel.app/users/${user._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -103,7 +103,10 @@ const ManageUsers = () => {
                   <td> {user.role}</td>
                   <td>
                     {user.role === "instructor" ? (
-                      <button className="btn btn-disabled w-4/5 ml-3"> Insructor </button>
+                      <button className="btn btn-disabled w-4/5 ml-3">
+                        {" "}
+                        Insructor{" "}
+                      </button>
                     ) : (
                       <button
                         onClick={() => handleMakeInstructor(user)}

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { config } from "localforage";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://top-musicy-server.vercel.app/",
 });
 
 const useAxiosSecure = () => {
@@ -36,7 +36,7 @@ const useAxiosSecure = () => {
       }
     );
   }, [logOut, navigate]);
-	
+
   return [axiosSecure];
 };
 

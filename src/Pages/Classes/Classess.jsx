@@ -10,10 +10,11 @@ const Classess = () => {
   const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const { data: classes = [], isLoading } = useQuery(["classes"], async () => {
-    const res = await fetch("http://localhost:5000/approvedclass");
+    const res = await fetch(
+      "https://top-musicy-server.vercel.app/approvedclass"
+    );
     return res.json();
   });
-
 
   if (isLoading) {
     return (
@@ -47,15 +48,15 @@ const Classess = () => {
     if (user && user.email) {
       const dataToSend = {
         ...selectedClass,
-        UserEmail: user.email
+        UserEmail: user.email,
       };
-  
-      fetch("http://localhost:5000/userselectedclass/", {
+
+      fetch("https://top-musicy-server.vercel.app/userselectedclass/", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataToSend)
+        body: JSON.stringify(dataToSend),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -68,7 +69,7 @@ const Classess = () => {
         });
     }
   };
-  
+
   return (
     <div className="my-20">
       <div className="grid md:grid-cols-3 gap-5 mb-10 max-w-screen-2xl mx-auto">
