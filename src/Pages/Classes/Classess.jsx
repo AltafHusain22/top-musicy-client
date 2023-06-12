@@ -71,7 +71,7 @@ const Classess = () => {
   };
 
   return (
-    <div className="my-20">
+    <div className="my-20 w-11/12 mx-auto">
       <div className="grid md:grid-cols-3 gap-5 mb-10 max-w-screen-2xl mx-auto">
         {classes?.map((classes, index) => (
           <div key={index}>
